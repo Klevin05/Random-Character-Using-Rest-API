@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Characters</title>
+</head>
+<style>
+    .heading{
+        margin: auto;
+        text-align: center;
+        text-decoration: dashed;
+        text-shadow: 2cm;
+        font-size: 2cm;
+        font-family: Arial, Helvetica, sans-serif;
+        font-style: italic;
+        color: rgb(255, 81, 0);
+    }
+    .name{
+        margin: auto;
+        text-align: center;
+    }
+    .click{
+        margin-left:auto;
+        margin-right: auto;
+    }
+    .img{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        border: burlywood;
+        border-style:groove;
+        border-spacing: 1cm;
+    }
+</style>
+
+<body>
+    <h1 class="heading">Get the details of random character</h1>
+    <button class="click">Click me</button>
+    <h1 class="name"></h1>
+    <img src="" class="img" alt="" >
+    <p class="data"></p>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script>
+        $("document").ready(function(){
+            const randomno=Math.ceil(Math.random()*730)
+            $(".click").on("click",function(){
+                $.get(`https://www.superheroapi.com/api.php/125267116572390/${randomno}/`,function(data){
+                    console.log(data)
+                    $("h1.name").text(data['name'])
+                    $.get(`https://www.superheroapi.com/api.php/125267116572390/${randomno}/image`,function(data1){
+                        //$(".img").slideUp()
+                        $(".img").attr("src",data1['url'])
+                        
+                        //$(".img").slideUp()
+                    })
+                    
+                    //$(".data").text(data['eye-color'])
+                })
+            })
+        })
+    </script>
+</body>
+</html>
